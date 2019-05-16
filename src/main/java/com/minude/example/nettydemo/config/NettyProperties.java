@@ -15,10 +15,25 @@ import java.util.Properties;
 @NoArgsConstructor
 public class NettyProperties {
 
+    /**
+     * TcpServer 监听的端口
+     */
     private int tcpPort = 8905;
+    /**
+     * boss线程
+     */
     private int bossCount = 1;
+    /**
+     * 工作线程
+     */
     private int workerCount = 4;
+    /**
+     * 是否保持长连接
+     */
     private boolean keepAlive = true;
+    /**
+     * 长连接最大数量
+     */
     private int backlog = 1024;
 
     public NettyProperties(Properties properties) {
