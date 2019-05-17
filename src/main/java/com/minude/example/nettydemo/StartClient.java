@@ -1,6 +1,7 @@
 package com.minude.example.nettydemo;
 
 import com.minude.example.nettydemo.client.NettyTcpClient;
+import io.netty.util.CharsetUtil;
 
 import java.util.Scanner;
 
@@ -19,8 +20,13 @@ public class StartClient {
         while (sc.hasNext()) {
 
             String str = sc.next();
-            client.sendMessage(str.getBytes());
-            System.out.println("send: " + str);
+            if ("exit".equals(str)) {
+                client.exit();
+            } else if ("conn".equals(str)) {
+                client.doConnect();
+            } else {
+                client.sendMessage(str);
+            }
         }
     }
 }

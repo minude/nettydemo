@@ -31,6 +31,7 @@ public class NettyTcpServer {
         // 创建工作线程组
         NioEventLoopGroup workerGroup = new NioEventLoopGroup(properties.getWorkerCount());
         final ServerBootstrap serverBootstrap = new ServerBootstrap();
+        final ServerHandler serverHandler = new ServerHandler();
         serverBootstrap
                 // 组装NioEventLoopGroup
                 .group(bossGroup, workerGroup)
@@ -46,7 +47,7 @@ public class NettyTcpServer {
                     @Override
                     protected void initChannel(NioSocketChannel ch) {
                         // 配置入站、出站事件channel
-                        ch.pipeline().addLast(new ServerHandler());
+                        ch.pipeline().addLast(serverHandler);
                     }
                 });
         // 绑定端口，同步等待成功
